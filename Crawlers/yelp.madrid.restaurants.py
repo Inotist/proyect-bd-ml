@@ -62,7 +62,7 @@ class YelpSpider(scrapy.Spider):
                 if geocode_result and len(geocode_result) > 0:
                     lat = geocode_result[0]['geometry']['location']['lat']
                     lon = geocode_result[0]['geometry']['location']['lng']
-                    TEMPORARY_FILE.writelines(f"{self.ID}||{url_text}||{title_text}||{stars_number}||{reviews_number}||{price_level}||{category_text}||{phone_text}||{address1_text}||{address2_text}||{lat}||{lon}\n")
+                    TEMPORARY_FILE.writelines(f"{self.ID}|{url_text}|{title_text}|{stars_number}|{reviews_number}|{price_level}|{category_text}|{phone_text}|{address1_text}|{address2_text}|{lat}|{lon}\n")
                     self.ID += 1
                 
         self.cycles += 1
@@ -75,7 +75,7 @@ def activate(request):
     request_json = request.get_json()
     BUCKET_NAME = 'bda5-keepcoding-inot1'
     DESTINATION_FILE_NAME = 'datasets/yelp/food/' + now.strftime("%Y/%m/%d/") +'crawl.csv'
-    TEMPORARY_FILE.writelines("ID||URL||Name||Score||Reviews||Price Level||Category||Phone||Address||District||Latitude||Longitude\n")
+    TEMPORARY_FILE.writelines("ID|URL|Name|Score|Reviews|Price Level|Category|Phone|Address|District|Latitude|Longitude\n")
     process = CrawlerProcess({
         'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
     })

@@ -11,10 +11,10 @@ def copy_blob(bucket_name, blob_name, new_bucket_name, new_blob_name):
     new_blob = source_bucket.copy_blob(
         source_blob, destination_bucket, new_blob_name)
 
-    print('Blob {} in bucket {} copied to blob {} in bucket {}.'.format(
+    return('Blob {} in bucket {} copied to blob {} in bucket {}.'.format(
         source_blob.name, source_bucket.name, new_blob.name,
         destination_bucket.name))
     
 def copy(request):
     r = request.get_json()
-    copy_blob(r['bucket_name'], r['blob_name'], r['new_bucket_name'], r['new_blob_name'])
+    return copy_blob(r['bucket_name'], r['blob_name'], r['new_bucket_name'], r['new_blob_name'])

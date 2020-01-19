@@ -21,7 +21,7 @@ CreateTableAirbnb = {
         "query_list": {
             "queries": [
               "DROP TABLE IF EXISTS airbnb;"
-              "CREATE TABLE airbnb (ID INT, ListingUrl STRING, ScrapeID INT, LastScraped STRING, Name STRING, Summary STRING, Space STRING, Description STRING, ExperiencesOffered STRING, NeighborhoodOverview STRING, Notes STRING, Transit STRING, Access STRING, Interaction STRING, HouseRules STRING, ThumbnailUrl STRING, MediumUrl STRING, PictureUrl STRING, XLPictureUrl STRING, HostID INT, HostURL STRING, HostName STRING, HostSince STRING, HostLocation STRING, HostAbout STRING, HostResponseTime STRING, HostResponseRate STRING, HostAcceptanceRate STRING, HostThumbnailUrl STRING, HostPictureUrl STRING, HostNeighbourhood STRING, HostListingsCount STRING, HostTotalListingsCount STRING, HostVerifications STRING, Street STRING, Neighbourhood STRING, NeighbourhoodCleansed STRING, NeighbourhoodGroupCleansed STRING, City STRING, State STRING, Zipcode STRING, Market STRING, SmartLocation STRING, CountryCode STRING, Country STRING, Latitude DOUBLE, Longitude DOUBLE, PropertyType STRING, RoomType STRING, Accommodates STRING, Bathrooms STRING, Bedrooms STRING, Beds STRING, BedType STRING, Amenities STRING, SquareFeet STRING, Price STRING, WeeklyPrice STRING, MonthlyPrice STRING, SecurityDeposit STRING, CleaningFee STRING, GuestsIncluded STRING, ExtraPeople STRING, MinimumNights STRING, MaximumNights STRING, CalendarUpdated STRING, HasAvailability STRING, Availability30 STRING, Availability60 STRING, Availability90 STRING, Availability365 STRING, CalendarlastScraped STRING, NumberofReviews STRING, FirstReview STRING, LastReview STRING, ReviewScoresRating STRING, ReviewScoresAccuracy STRING, ReviewScoresCleanliness STRING, ReviewScoresCheckin STRING, ReviewScoresCommunication STRING, ReviewScoresLocation STRING, ReviewScoresValue STRING, License STRING, JurisdictionNames STRING, CancellationPolicy STRING, Calculatedhostlistingscount STRING, ReviewsperMonth STRING, Geolocation STRING, Features STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ';';"
+              "CREATE TABLE airbnb (ID STRING, ListingUrl STRING, ScrapeID STRING, LastScraped STRING, Name STRING, Summary STRING, Space STRING, Description STRING, ExperiencesOffered STRING, NeighborhoodOverview STRING, Notes STRING, Transit STRING, Access STRING, Interaction STRING, HouseRules STRING, ThumbnailUrl STRING, MediumUrl STRING, PictureUrl STRING, XLPictureUrl STRING, HostID STRING, HostURL STRING, HostName STRING, HostSince STRING, HostLocation STRING, HostAbout STRING, HostResponseTime STRING, HostResponseRate STRING, HostAcceptanceRate STRING, HostThumbnailUrl STRING, HostPictureUrl STRING, HostNeighbourhood STRING, HostListingsCount STRING, HostTotalListingsCount STRING, HostVerifications STRING, Street STRING, Neighbourhood STRING, NeighbourhoodCleansed STRING, NeighbourhoodGroupCleansed STRING, City STRING, State STRING, Zipcode STRING, Market STRING, SmartLocation STRING, CountryCode STRING, Country STRING, Latitude STRING, Longitude STRING, PropertyType STRING, RoomType STRING, Accommodates STRING, Bathrooms STRING, Bedrooms STRING, Beds STRING, BedType STRING, Amenities STRING, SquareFeet STRING, Price STRING, WeeklyPrice STRING, MonthlyPrice STRING, SecurityDeposit STRING, CleaningFee STRING, GuestsIncluded STRING, ExtraPeople STRING, MinimumNights STRING, MaximumNights STRING, CalendarUpdated STRING, HasAvailability STRING, Availability30 STRING, Availability60 STRING, Availability90 STRING, Availability365 STRING, CalendarlastScraped STRING, NumberofReviews STRING, FirstReview STRING, LastReview STRING, ReviewScoresRating STRING, ReviewScoresAccuracy STRING, ReviewScoresCleanliness STRING, ReviewScoresCheckin STRING, ReviewScoresCommunication STRING, ReviewScoresLocation STRING, ReviewScoresValue STRING, License STRING, JurisdictionNames STRING, CancellationPolicy STRING, Calculatedhostlistingscount STRING, ReviewsperMonth STRING, Geolocation STRING, Features STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ';';"
             ]
         }
     }
@@ -38,7 +38,7 @@ CreateTableYelpFood = {
         "query_list": {
             "queries": [
               "DROP TABLE IF EXISTS yelp_food;"
-              "CREATE TABLE yelp_food (ID INT, URL STRING, Name STRING, Score STRING, Reviews STRING, PriceLevel STRING, Category STRING, Phone STRING, Address STRING, District STRING, Latitude DOUBLE, Longitude DOUBLE) ROW FORMAT DELIMITED FIELDS TERMINATED BY '||';"
+              "CREATE TABLE yelp_food (ID STRING, URL STRING, Name STRING, Score STRING, Reviews STRING, PriceLevel STRING, Category STRING, Phone STRING, Address STRING, District STRING, Latitude STRING, Longitude STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '|';"
             ]
         }
     }
@@ -60,7 +60,7 @@ LoadData = {
     }
 }
 
-CalculateDistances = {
+ComputeDistances = {
     "placement": {
         "cluster_name": "hive"
     },

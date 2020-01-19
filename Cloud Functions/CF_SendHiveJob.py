@@ -11,4 +11,4 @@ def post(request):
     job_response = job_client.submit_job('bootcamp-bdmlv', 'europe-west2', job)
     job_id = job_response.reference.job_id
 
-    print(f'Submitted job \"{job_id}\".')
+    return(f'Submitted job \"{job_id}\".')

@@ -45,7 +45,7 @@ class YelpSpider(scrapy.Spider):
               
             # Print a un fichero
             if None not in [url_text, title_text, stars_number, reviews_number, price_level, category_text, phone_text, address1_text, address2_text]:
-                print(f"{url_text}||{title_text}||{stars_number}||{reviews_number}||{price_level}||{category_text}||{phone_text}||{address1_text}||{address2_text}")
+                print(f"{url_text}|{title_text}|{stars_number}|{reviews_number}|{price_level}|{category_text}|{phone_text}|{address1_text}|{address2_text}")
             
         
         
