@@ -39,7 +39,7 @@ def create_cluster(dataproc, project, zone, region, cluster_name):
             },
             "software_config": {
                 "image_version": "1.3-deb9",
-                "properties": {},
+                "properties": {"hive:hive.mapred.mode": "nonstrict"},
                 "optional_components": []
             },
             "secondary_worker_config": {

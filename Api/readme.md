@@ -5,8 +5,8 @@ Api creada con el fin de facilitar la comunicación con mi proyecto de google cl
 Cada método responde a una serie de variables que se encuentran en el archivo ApiConfig.
 
 #### `crawl(page)`
-Pone en marcha un spider que generará un nuevo dataset de la página indicada. De momento solo están disponibles 'yelp' y 'food'  y por ahora ambas hacen lo mismo, pero cuando haya más categorías, la variable 'yelp' pondrá en marcha el spider de todas las secciones disponibles (planeo recoger datos también de otras plataformas más adelante).
-> Las variables/páginas disponibles están definidas en el archivo de configuración.
+Pone en marcha un spider que generará un nuevo dataset de la/s página/s indicada. De momento solo está disponible 'YelpFood', pero cuando haya más categorías, la variable `yelp` pondrá en marcha el spider de todas las secciones de yelp disponibles, así como la variable `food` pondría en marcha el spider de todas las páginas recogidas de restaurantes (planeo recoger datos también de otras plataformas más adelante).
+> Las variables/páginas disponibles están definidas en el archivo de configuración, pero si se conocen las opciones y se quiere, se puede introducir como parámetro directamente un string indicando el crawler específico.
 
 #### `stage(dataset, category)`
 Coge el dataset más reciente de la página y categoría que le indiques y lo mete en la carpeta `input/` para su posterior tratamiento. Los parámetros tienen que estar en formato str. Ej: `stage('yelp', 'food')`
@@ -20,3 +20,6 @@ Genera y pone en marcha un job (requiere que el cluster esté levantado). Se pue
 
 #### `delete_cluster`
 Elimina el cluster (requiere que el cluster esté levantado o levantándose).
+
+<br>
+<span style="color:red">Algunas ejecuciones pueden tardar un tiempo en llevarse a cabo. Más adelante buscaré la manera de comprobar que una tarea requerida se haya finalizado antes de continuar con la siguiente tarea. O en su defecto mostrar un mensaje de error apropiado.</span>

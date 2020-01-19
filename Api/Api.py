@@ -39,8 +39,10 @@ def create_cluster():
     
     
 def send_job(job_name, dataset='airbnb', category=None):
-    if 'CargarDatos' in job_name['reference']['job_id'] and not job_name['hive_job']['query_list']['queries'][0]:
+    if 'CargarDatos' in job_name['reference']['job_id']:
         job_name['hive_job']['query_list']['queries'][0] = get_data(dataset, category)
+    if 'CalcularDistancias' in job_name['reference']['job_id']:
+        job_name['hive_job']['query_list']['queries'] = get_querys(dataset, category)
 
     r = requests.post('https://europe-west1-bootcamp-bdmlv.cloudfunctions.net/SendHiveJob', json=job_name)
     
@@ -50,7 +52,7 @@ def send_job(job_name, dataset='airbnb', category=None):
             r = requests.post('https://europe-west1-bootcamp-bdmlv.cloudfunctions.net/SendHiveJob', json=job_name)
         else: break
 
-    diff = 0
+    diff = 0 # Buscamos el dataset en directorios de días anteriores al no haberlo encontrado en el día actual.
     while 'CargarDatos' in job_name['reference']['job_id'] and r.status_code != 200 and diff < 15:
         diff += 1
         job_name['hive_job']['query_list']['queries'][0] = get_data(dataset, category, diff)

@@ -1,8 +1,10 @@
 # Page Crawlers #
 
-food = 'YelpFood'
+food = [
+    'YelpFood'
+    ]
 yelp = [
-    food
+    food[0]
     ]
 
 
@@ -18,7 +20,8 @@ CreateTableAirbnb = {
     "hive_job": {
         "query_list": {
             "queries": [
-              "CREATE TABLE airbnb (\nID INT,\nListing_Url STRING,\nScrape_ID INT,\nLast_Scraped STRING,\nName STRING,\nSummary STRING,\nSpace STRING,\nDescription STRING,\nExperiences_Offered STRING,\nNeighborhood_Overview STRING,\nNotes STRING,\nTransit STRING,\nAccess STRING,\nInteraction STRING,\nHouse_Rules STRING,\nThumbnail_Url STRING,\nMedium_Url STRING,\nPicture_Url STRING,\nXL_Picture_Url STRING,\nHost_ID INT,\nHost_URL STRING,\nHost_Name STRING,\nHost_Since STRING,\nHost_Location STRING,\nHost_About STRING,\nHost_Response_Time STRING,\nHost_Response_Rate STRING,\nHost_Acceptance_Rate STRING,\nHost_Thumbnail_Url STRING,\nHost_Picture_Url STRING,\nHost_Neighbourhood STRING,\nHost_Listings_Count STRING,\nHost_Total_Listings_Count STRING,\nHost_Verifications STRING,\nStreet STRING,\nNeighbourhood STRING,\nNeighbourhood_Cleansed STRING,\nNeighbourhood_Group_Cleansed STRING,\nCity STRING,\nState STRING,\nZipcode STRING,\nMarket STRING,\nSmart_Location STRING,\nCountry_Code STRING,\nCountry STRING,\nLatitude DOUBLE,\nLongitude DOUBLE,\nProperty_Type STRING,\nRoom_Type STRING,\nAccommodates STRING,\nBathrooms STRING,\nBedrooms STRING,\nBeds STRING,\nBed_Type STRING,\nAmenities STRING,\nSquare_Feet STRING,\nPrice STRING,\nWeekly_Price STRING,\nMonthly_Price STRING,\nSecurity_Deposit STRING,\nCleaning_Fee STRING,\nGuests_Included STRING,\nExtra_People STRING,\nMinimum_Nights STRING,\nMaximum_Nights STRING,\nCalendar_Updated STRING,\nHas_Availability STRING,\nAvailability_30 STRING,\nAvailability_60 STRING,\nAvailability_90 STRING,\nAvailability_365 STRING,\nCalendar_last_Scraped STRING,\nNumber_of_Reviews STRING,\nFirst_Review STRING,\nLast_Review STRING,\nReview_Scores_Rating STRING,\nReview_Scores_Accuracy STRING,\nReview_Scores_Cleanliness STRING,\nReview_Scores_Checkin STRING,\nReview_Scores_Communication STRING,\nReview_Scores_Location STRING,\nReview_Scores_Value STRING,\nLicense STRING,\nJurisdiction_Names STRING,\nCancellation_Policy STRING,\nCalculated_host_listings_count STRING,\nReviews_per_Month STRING,\nGeolocation STRING,\nFeatures STRING\n)\nROW FORMAT DELIMITED FIELDS TERMINATED BY ';';"
+              "DROP TABLE IF EXISTS airbnb;"
+              "CREATE TABLE airbnb (ID INT, ListingUrl STRING, ScrapeID INT, LastScraped STRING, Name STRING, Summary STRING, Space STRING, Description STRING, ExperiencesOffered STRING, NeighborhoodOverview STRING, Notes STRING, Transit STRING, Access STRING, Interaction STRING, HouseRules STRING, ThumbnailUrl STRING, MediumUrl STRING, PictureUrl STRING, XLPictureUrl STRING, HostID INT, HostURL STRING, HostName STRING, HostSince STRING, HostLocation STRING, HostAbout STRING, HostResponseTime STRING, HostResponseRate STRING, HostAcceptanceRate STRING, HostThumbnailUrl STRING, HostPictureUrl STRING, HostNeighbourhood STRING, HostListingsCount STRING, HostTotalListingsCount STRING, HostVerifications STRING, Street STRING, Neighbourhood STRING, NeighbourhoodCleansed STRING, NeighbourhoodGroupCleansed STRING, City STRING, State STRING, Zipcode STRING, Market STRING, SmartLocation STRING, CountryCode STRING, Country STRING, Latitude DOUBLE, Longitude DOUBLE, PropertyType STRING, RoomType STRING, Accommodates STRING, Bathrooms STRING, Bedrooms STRING, Beds STRING, BedType STRING, Amenities STRING, SquareFeet STRING, Price STRING, WeeklyPrice STRING, MonthlyPrice STRING, SecurityDeposit STRING, CleaningFee STRING, GuestsIncluded STRING, ExtraPeople STRING, MinimumNights STRING, MaximumNights STRING, CalendarUpdated STRING, HasAvailability STRING, Availability30 STRING, Availability60 STRING, Availability90 STRING, Availability365 STRING, CalendarlastScraped STRING, NumberofReviews STRING, FirstReview STRING, LastReview STRING, ReviewScoresRating STRING, ReviewScoresAccuracy STRING, ReviewScoresCleanliness STRING, ReviewScoresCheckin STRING, ReviewScoresCommunication STRING, ReviewScoresLocation STRING, ReviewScoresValue STRING, License STRING, JurisdictionNames STRING, CancellationPolicy STRING, Calculatedhostlistingscount STRING, ReviewsperMonth STRING, Geolocation STRING, Features STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY ';';"
             ]
         }
     }
@@ -34,7 +37,8 @@ CreateTableYelpFood = {
     "hive_job": {
         "query_list": {
             "queries": [
-              "CREATE TABLE yelp_food (ID INT,\nURL STRING,\nName STRING,\nScore STRING,\nReviews STRING,\nPrice_Level STRING,\nCategory STRING,\nPhone STRING,\nAddress STRING,\nDistrict STRING,\nLatitude DOUBLE,\nLongitude DOUBLE)\nROW FORMAT DELIMITED FIELDS TERMINATED BY '||';"
+              "DROP TABLE IF EXISTS yelp_food;"
+              "CREATE TABLE yelp_food (ID INT, URL STRING, Name STRING, Score STRING, Reviews STRING, PriceLevel STRING, Category STRING, Phone STRING, Address STRING, District STRING, Latitude DOUBLE, Longitude DOUBLE) ROW FORMAT DELIMITED FIELDS TERMINATED BY '||';"
             ]
         }
     }
@@ -66,7 +70,7 @@ CalculateDistances = {
     "hive_job": {
         "query_list": {
             "queries": [
-              "SELECT airbnb.ID, food.ID FROM airbnb, food WHERE\nsqrt(pow(airbnb.Latitude - food.Latitude, 2) + pow(airbnb.Longitude - food.Longitude, 2)) < 0.01"
+              "" # Esta query se declara en ApiUtils.get_querys()
             ]
         }
     }

@@ -28,8 +28,15 @@ def staging_area(bucket_name, dataset, category, diff=0):
         }
 
     return {
-        'bucket_name': bucket_name,
-        'blob_name': f'datasets/{dataset}/{now}/crawl.csv',
-        'new_bucket_name': bucket_name,
-        'new_blob_name': f'input/{dataset}.csv'
-        }
+    'bucket_name': bucket_name,
+    'blob_name': f'datasets/{dataset}/{now}/crawl.csv',
+    'new_bucket_name': bucket_name,
+    'new_blob_name': f'input/{dataset}.csv'
+    }
+
+def get_querys(dataset, category):
+    if dataset == 'airbnb': return
+    return [
+    f"CREATE TABLE IF NOT EXISTS {dataset}_{category} (Name STRING, Latitude DOUBLE, Longitude DOUBLE)",
+    f"INSERT OVERWRITE DIRECTORY 'gs://bda5-keepcoding-inot1/output/relations' ROW FORMAT DELIMITED FIELDS TERMINATED BY '||' SELECT airbnb.Name, data.Name FROM airbnb, {dataset}_{category} data WHERE sqrt(pow(airbnb.Latitude - data.Latitude, 2) + pow(airbnb.Longitude - data.Longitude, 2)) < 0.01;"
+    ]
