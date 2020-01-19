@@ -1,0 +1,5 @@
+https://europe-west1-bootcamp-bdmlv.cloudfunctions.net/CrawlerYelpFood
+https://europe-west1-bootcamp-bdmlv.cloudfunctions.net/CreateCluster (muestra un error pero en realidad sí que se levanta el cluster, es un bug de google cloud relacionado con las limitaciones de la versión de prueba)
+https://europe-west1-bootcamp-bdmlv.cloudfunctions.net/SendHiveJob (requiere un json indicándole la configuración del job)
+https://europe-west1-bootcamp-bdmlv.cloudfunctions.net/DeleteCluster (pasa igual que con CreateCluster)
+https://europe-west1-bootcamp-bdmlv.cloudfunctions.net/StageData (requiere parámetros que le indiquen qué archivos copiar y dónde copiarlos)

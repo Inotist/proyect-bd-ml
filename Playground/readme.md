@@ -1,0 +1,2 @@
+# Mi patio de juego
+Siempre en mis proyectos me gusta tener una carpetita como ésta donde voy haciendo pruebas y cacharreando con las cosas que son nuevas para mí. Solo para curiosos, se puede ignorar perfectamente.
