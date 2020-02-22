@@ -54,7 +54,7 @@ LoadData = {
     "hive_job": {
         "query_list": {
             "queries": [
-              "" # Esta query se declara en ApiUtils.get_path(), un script que se adapta a los datos solicitados.
+              "" # Esta query se declara en ApiUtils.get_data(), un script que se adapta a los datos solicitados.
             ]    # El script solo funciona si primero se ha creado la tabla correspondiente.
         }
     }

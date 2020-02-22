@@ -1,0 +1,13 @@
+CREATE TABLE yelp_food
+(ID serial NOT NULL,
+URL character varying(255),
+Name character varying(255),
+Score decimal,
+Reviews integer,
+PriceLevel character varying(255),
+Category character varying(255),
+Phone character varying(255),
+Address character varying(255),
+District character varying(255),
+Latitude decimal,
+Longitude decimal)

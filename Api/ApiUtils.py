@@ -37,6 +37,6 @@ def staging_area(bucket_name, dataset, category, diff=0):
 def get_querys(dataset, category):
     if dataset == 'airbnb': return
     return [
-    f"CREATE TABLE IF NOT EXISTS {dataset}_{category} (Name STRING, Latitude DOUBLE, Longitude DOUBLE)",
-    f"INSERT OVERWRITE DIRECTORY 'gs://bda5-keepcoding-inot1/output/relations' ROW FORMAT DELIMITED FIELDS TERMINATED BY '|' SELECT airbnb.Name, data.Name FROM airbnb, {dataset}_{category} data WHERE sqrt(pow(cast(airbnb.Latitude as double) - cast(data.Latitude as double), 2) + pow(cast(airbnb.Longitude as double) - cast(data.Longitude as double), 2)) < 0.001;"
+    f"CREATE TABLE IF NOT EXISTS {dataset}_{category} (Name STRING, Latitude STRING, Longitude STRING)",
+    f"INSERT OVERWRITE DIRECTORY 'gs://bda5-keepcoding-inot1/output/relations' ROW FORMAT DELIMITED FIELDS TERMINATED BY ';' SELECT airbnb.ID, data.Name FROM airbnb, {dataset}_{category} data WHERE sqrt(pow(cast(airbnb.Latitude as double) - cast(data.Latitude as double), 2) + pow(cast(airbnb.Longitude as double) - cast(data.Longitude as double), 2)) < 0.001"
     ]
