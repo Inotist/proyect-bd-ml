@@ -15,11 +15,7 @@ d3.json('https://gist.githubusercontent.com/miguepiscy/2d431ec3bc101ef62ff8ddd0e
 	.then(drawMap);
 
 function drawMap(featureCollection) {
-	const svg = d3.select('#chart')
-		.append('svg');
-	svg
-		.attr('width', chartWidth)
-		.attr('height', chartHeight);
+	const chartSVG = createChartSVG()
 
 	const geojson = L.geoJson(featureCollection).addTo(map);
 
@@ -31,7 +27,7 @@ function drawMap(featureCollection) {
 		layer.options.color = defaultColor;
 
 		layer.on('click', d => {
-			drawChart(d.target, svg);
+			drawChart(d.target, chartSVG);
 		});
 	});
 
@@ -39,6 +35,61 @@ function drawMap(featureCollection) {
 	drawLegend();
 
 	map.fitBounds(geojson.getBounds());
+}
+
+function createChartSVG() {
+	return d3.select("#chart").append("svg")
+    	.attr("width", chartWidth + margin.left + margin.right)
+    	.attr("height", chartHeight + margin.top + margin.bottom)
+  		.append("g")
+    	.attr("transform", `translate(${margin.left}, ${margin.top})`);
+}
+
+function drawChart(target, svg) {
+	svg.selectAll("*").remove();
+	const dataProp = getData(target.feature.properties.properties);
+	const maxProperties = d3.max(Object.values(dataProp[1]));
+	const maxBedrooms = d3.max(Object.keys(dataProp[1]));
+
+	var x = d3.scaleLinear().range([0, chartWidth]);
+	var y = d3.scaleBand().rangeRound([0, chartHeight]).paddingInner(0.1);
+
+	var xAxis = d3.axisBottom(x)
+    	.ticks(maxProperties);
+	var yAxis = d3.axisLeft(y)
+    	.ticks(maxBedrooms);
+	
+  	x.domain([0, d3.max(dataProp[0], d => d.properties)]);
+  	y.domain(dataProp[0].map(d => d.bedrooms));
+
+  	svg.append("g")
+    	.attr("transform", `translate(0, ${chartHeight})`)
+    	.call(xAxis);
+
+    svg.append("text")             
+      .attr("transform", `translate(${chartWidth / 2} ,${chartHeight + margin.top + 20})`)
+      .style("text-anchor", "middle")
+      .text("Properties");
+
+  	svg.append("g")
+    	.call(yAxis);
+
+    svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x", 0 - (chartHeight / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Bedrooms");
+
+  	svg.selectAll("bar")
+    	.data(dataProp[0])
+    	.enter()
+    	.append("rect")
+    	.style("fill", barColor)
+    	.attr("y", d => y(d.bedrooms))
+    	.attr("height", y.bandwidth())
+    	.attr("width", d => x(d.properties));
 }
 
 function setColor(layers) {
@@ -95,29 +146,6 @@ function drawLegend() {
 	}
 }
 
-function drawChart(target, svg) {
-	svg.selectAll("*").remove();
-
-	const dataProp = getData(target.feature.properties.properties);
-	const maxInput = d3.max(Object.values(dataProp[1]));
-
-	const rect = svg
-		.selectAll('rect')
-		.data(dataProp[0])
-		.enter()
-		.append('rect');
-
-	rect.attr('x', 0)
-		.attr('y', (d, index) => index * (thickness + 1))
-		.attr('width', scale)
-		.attr('height', thickness);
-
-	function scale(d) {
-		const scaleNum = chartWidth / maxInput;
-		return scaleNum * d.properties;
-	}
-}
-
 function getData(source) {
 	var data = [];
 	var properties = {};
@@ -134,5 +162,8 @@ function getData(source) {
 			'properties': properties[bedrooms]
 		});
 	});
+	data.sort((a,b) => {
+		return a.properties-b.properties
+	})
 	return [data, properties];
 }
