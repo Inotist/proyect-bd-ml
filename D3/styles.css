@@ -1,0 +1,9 @@
+#map {
+    position: absolute;
+    height: 85%;
+    width: 750px;
+}
+
+#chart {
+	margin-left: 800px;
+}
