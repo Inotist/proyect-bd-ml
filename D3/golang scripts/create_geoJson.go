@@ -14,7 +14,7 @@ type dynamic map[string]interface{}
 
 func appendRow(geoJson dynamic, neightbourhood string, latitude, longitude float64, bedrooms, price int64, cartodb_id int) ([]dynamic, int) {
 	if neightbourhood != "" && latitude != 0 && longitude != 0 && bedrooms != 0 && price != 0 {
-		strings.ToLower(neightbourhood)
+		neightbourhood = strings.ToLower(neightbourhood)
 
 		for _, feature := range geoJson["features"].([]dynamic) {
 			if feature["properties"].(dynamic)["name"] == neightbourhood {
@@ -59,6 +59,19 @@ func appendRow(geoJson dynamic, neightbourhood string, latitude, longitude float
 	return geoJson["features"].([]dynamic), cartodb_id
 }
 
+func calculateAvgPrices(geoJson dynamic) (dynamic) {
+	for _, feature := range geoJson["features"].([]dynamic) {
+		var price int64
+		var count int64
+		for _, properties := range feature["properties"].(dynamic)["properties"].([]dynamic) {
+			price += properties["price"].(int64)
+			count++
+		}
+		feature["properties"].(dynamic)["avgprice"] = price/count
+	}
+	return geoJson
+}
+
 func main() {
 	geoJson := make(dynamic)
 	geoJson["type"] = "FeatureCollection"
@@ -86,6 +99,8 @@ func main() {
 
 		geoJson["features"], cartodb_id = appendRow(geoJson, neightbourhood.String, latitude.Float64, longitude.Float64, bedrooms.Int64, price.Int64, cartodb_id)
 	}
+
+	geoJson = calculateAvgPrices(geoJson)
 
 	geo, err := json.Marshal(geoJson)
 	if err != nil {fmt.Printf("Can't convert to json. %s \n", err)}

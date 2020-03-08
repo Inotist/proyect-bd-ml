@@ -12,7 +12,10 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}.png
 }).addTo(map);
 
 d3.json('https://gist.githubusercontent.com/miguepiscy/2d431ec3bc101ef62ff8ddd0e476177f/raw/2482274db871e60195b7196c602700226bdd3a44/practica.json')
-	.then(drawMap);
+	.then(drawMap); // geoJson proporcionado por el profesor para realizar la práctica
+
+/*d3.json('https://gist.githubusercontent.com/Inotist/a0b7f73d5e8b6eea4a880d605cc52647/raw/d73d2d16c4f04fa4f5e11a58dcfec31f6ca17e20/geoJsonAirbnbv2.json')
+	.then(drawMap);*/ // geoJson generado a partir de los datos que tengo en mi cloud sql del dataset de aribnb.
 
 function drawMap(featureCollection) {
 	const chartSVG = createChartSVG()
