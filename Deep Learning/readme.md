@@ -3,7 +3,7 @@ Práctica desarrollada en local y posteriormente subida a Google Colab:
 
 ##### Notebook 1 - Carga de datos:
 Para este notebook se necesitan los archivos *airbnb-listings.csv* y *was_loaded.npy* que se encuentran en esta misma carpeta del repositorio. <br>
-[https://colab.research.google.com/drive/1d6jtq4-fJptBr6BRn4uHIOO0TRY5R-wh?usp=sharing](https://colab.research.google.com/drive/1d6jtq4-fJptBr6BRn4uHIOO0TRY5R-wh?usp=sharing)
+[https://colab.research.google.com/drive/1Vn5jiuTF4ZK8gHutTl-tKHckedvNAbSr?usp=sharing](https://colab.research.google.com/drive/1Vn5jiuTF4ZK8gHutTl-tKHckedvNAbSr?usp=sharing)
 
 ##### Notebook 2 - Transformación de los datos:
 Para este notebook se necesitan los archivos *train.csv*, *val.csv* y *test.csv* que se generan con el notebook 1. Los archivos con el mismo nombre que se encuentra en esta carpeta del repositorio ya han pasado por este proceso de transformación. <br>
